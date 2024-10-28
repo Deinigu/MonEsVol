@@ -1,33 +1,22 @@
 const Discord = require("discord.js");
-const client = new Discord.Client({ intents: 53608447 });
 const { loadSlash } = require("./handlers/slashHandler");
 require("dotenv").config();
 
+const client = new Discord.Client({ intents: 3276799 });
 client.slashCommands = new Discord.Collection();
 
+// Manejar interacciones de comandos
 client.on("interactionCreate", async (interaction) => {
-  // Fix: Use .isCommand() instead of .isCommands()
   if (!interaction.isCommand()) return;
-  
+
   const cmd = client.slashCommands.get(interaction.commandName);
   if (!cmd) return;
 
-  const args = [];
-  for (let option of interaction.options.data) {
-    if (option.type === 1) { // 1 means subcommand
-      if (option.name) args.push(option.name);
-      option.options?.forEach((x) => {
-        if (x.value) args.push(x.value);
-      });
-    } else if (option.value) {
-      args.push(option.value);
-    }
-  }
-  // Ensure execute function is defined on the command
-  if (cmd.execute) {
-    cmd.execute(client, interaction, args);
-  } else {
-    console.error(`[ERROR] Command ${interaction.commandName} does not have an execute function.`);
+  try {
+    await cmd.execute(client, interaction);
+  } catch (error) {
+    console.error(`[ERROR] Error ejecutando el comando ${interaction.commandName}:`, error);
+    await interaction.reply({ content: 'Hubo un error al ejecutar este comando.', ephemeral: true });
   }
 });
 
@@ -42,8 +31,8 @@ client.on("interactionCreate", async (interaction) => {
 
 client.on("ready", async () => {
   console.log(`[INFO] Bot started as ${client.user.tag}`);
-  
-  // Load slash commands
+
+  // Cargar los comandos slash
   try {
     await loadSlash(client);
     console.log(`[INFO] Slash commands loaded successfully`);
