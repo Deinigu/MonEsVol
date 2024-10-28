@@ -27,7 +27,7 @@ module.exports = {
             .setTitle("🍝 Pasta!")
             .setDescription(`**Ping:** ${ping} ms`)
             .setTimestamp()
-            .setFooter({ text: 'Comando de latencia' });
+            .setFooter({ text: '/ping' });
 
         // Reply with the embed
         await interaction.reply({ embeds: [embed] });
