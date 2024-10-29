@@ -16,14 +16,14 @@ module.exports = {
         name: "ping",
         description: "Comprueba tu latencia."
     },
-    
+
     async execute(client, interaction) {
-        // Calculate the ping
-        let ping = Date.now() - interaction.createdTimestamp;
+        // Initialize ping to WebSocket ping or fallback if it's -1
+        let ping = client.ws.ping !== -1 ? client.ws.ping : Date.now() - interaction.createdTimestamp;
 
         // Create the embed
         const embed = new EmbedBuilder()
-            .setColor(colors.primary) // Use color from JSON
+            .setColor(colors.primary)
             .setTitle("🍝 Pasta!")
             .setDescription(`**Ping:** ${ping} ms`)
             .setTimestamp()
@@ -32,4 +32,5 @@ module.exports = {
         // Reply with the embed
         await interaction.reply({ embeds: [embed] });
     }
+
 };
