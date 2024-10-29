@@ -1,6 +1,18 @@
-const { AttachmentBuilder } = require("discord.js");
-const imagenes = require('../../utils/json/imagenes.json');
-const imagenessolos = require('../../utils/json/imagenesSolos.json');
+const funcBendiciones = require('../../utils/js/bendiciones');
+const funcImagenes = require('../../utils/js/imagenes');
+const funcStrings = require('../../utils/js/strings');
+const { EmbedBuilder } = require("discord.js");
+
+
+// Correctly require the colors JSON file
+let colors;
+try {
+  colors = require('../../utils/json/colors.json'); // Corrected path
+} catch (error) {
+  console.error(`[ERROR] Could not load colors.json: ${error.message}`);
+  colors = { primary: "#FFFFFF" }; // Default color if not found
+}
+
 
 module.exports = {
   name: "rezar",
@@ -20,21 +32,48 @@ module.exports = {
 
   async execute(client, interaction) {
     const mencionado = interaction.options.getUser("usuario");
-    const img_al = Math.floor(Math.random() * imagenes.length);
-    const img = new AttachmentBuilder(imagenes[img_al]);
+    const bendicion = funcBendiciones.getRandomBlessing();
+    const usuario = funcStrings.capitalizeFirstLetter(interaction.user.username)
+
 
     if (!mencionado) {
-      const img_al2 = Math.floor(Math.random() * imagenessolos.length);
-      const img2 = new AttachmentBuilder(imagenessolos[img_al2]);
+      // Rezar solo
+      const img = funcImagenes.getImageSolo();
+
+
+      const embed = new EmbedBuilder()
+        .setColor(colors.primary) // Use color from JSON
+        .setTitle(`🍝 ¡Ramén!`)
+        .addFields(
+          { name: `Gracias por rezar, ${usuario}.`, value: bendicion }
+        )
+        .setImage(img)
+        .setTimestamp()
+        .setFooter({ text: '/rezar' });
       await interaction.reply({
-        content: `Has sido bendecido por mí, humano. Disfruta tu bendición`,
-        files: [img2]
+        embeds: [embed],
       });
     } else {
+      // Bendecido a alguien
+      const img = funcImagenes.getImageCoop();
+
+      const bendecido = funcStrings.capitalizeFirstLetter(mencionado.username)
+
+
+      const embed = new EmbedBuilder()
+        .setColor(colors.primary) // Use color from JSON
+        .setTitle(`🍝 ¡Ramén!`)
+        .addFields(
+
+          { name: `**${bendecido}** ha sido bendecido gracias a **${usuario}**`, value: bendicion }
+        )
+        .setImage(img)
+        .setTimestamp()
+        .setFooter({ text: '/rezar' });
       await interaction.reply({
-        content: `${mencionado.username} ha sido bendecido gracias a ${interaction.user.username}`,
-        files: [img]
+        embeds: [embed]
       });
     }
+
   }
 };

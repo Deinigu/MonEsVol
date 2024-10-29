@@ -15,6 +15,7 @@ module.exports = {
 		}
 
 		// Set the slash commands in the Discord application
+		console.log(client.slashCommands)
 		await client.application?.commands.set(client.slashCommands.map(command => command.data));
 	},
 };
