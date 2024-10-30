@@ -3,13 +3,13 @@ const { readdirSync } = require("fs");
 module.exports = {
 	async loadSlash(client) {
 		// Iterate through each category in the slashCommands directory
-		for (const category of readdirSync("./slashCommands")) {
+		for (const category of readdirSync("./commands")) {
 			// Make sure the path is correct and read the files in each category
-			const commandFiles = readdirSync(`./slashCommands/${category}`).filter(file => file.endsWith(".js"));
+			const commandFiles = readdirSync(`./commands/${category}`).filter(file => file.endsWith(".js"));
 
 			// Iterate through each command file
 			for (const fileName of commandFiles) {
-				const command = require(`../slashCommands/${category}/${fileName}`);
+				const command = require(`../commands/${category}/${fileName}`);
 				client.slashCommands.set(command.name, command);
 			}
 		}
