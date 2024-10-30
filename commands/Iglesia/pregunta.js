@@ -34,8 +34,8 @@ module.exports = {
     const pregunta = interaction.options.getString("pregunta").toLowerCase();
     const respuesta = funcRespuestas.getRandomRespuesta();
     const embed = new EmbedBuilder()
-      .setTitle(`🔮🍝 ${usuario} ha preguntado: **${pregunta}**`)
-      .addFields({ name: `✨ Mi respuesta es: `, value: `${respuesta}` })
+      .setTitle(`🔮 ${usuario} ha preguntado: **${pregunta}**`)
+      .addFields({ name: `🍝 Mi respuesta es: `, value: `${respuesta}` })
       .setColor(colors.primary)
       .setTimestamp()
       .setFooter({ text: "/preguntar" });

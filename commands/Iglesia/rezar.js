@@ -65,7 +65,7 @@ module.exports = {
         .setTitle(`🍝 ¡Ramén!`)
         .addFields(
 
-          { name: `**${bendecido}** ha sido bendecido gracias a **${usuario}**`, value: bendicion }
+          { name: `**${bendecido}** ha sido bendecide gracias a **${usuario}**`, value: bendicion }
         )
         .setImage(img)
         .setTimestamp()
