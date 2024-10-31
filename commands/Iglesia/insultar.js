@@ -35,13 +35,14 @@ module.exports = {
     const mencionado = interaction.options.getUser("usuario");
 
     if (mencionado) {
+      const mencionadoId = mencionado.id;
       const mencionadoNombre = funcStrings.capitalizeFirstLetter(
         mencionado.username
       );
       const embed = new EmbedBuilder()
         .addFields({
-          name: `${usuario} ha insultado a ${mencionadoNombre} 🤬 `,
-          value: `${mencionadoNombre}, eres un/una **${respuesta}**.`,
+          name: `${usuario} ha insultado a <@${mencionadoId}> 🤬`,
+          value: `${mencionadoNombre}, **${respuesta}**.`,
         })
         .setColor(colors.primary)
         .setTimestamp()
@@ -51,11 +52,10 @@ module.exports = {
       });
       return;
     } else {
-
       const embed = new EmbedBuilder()
         .addFields({
           name: `${usuario} me ha pedido un insulto 🤬 `,
-          value: `${usuario}, eres un/una **${respuesta}**.`,
+          value: `${usuario}, **${respuesta}**.`,
         })
         .setColor(colors.primary)
         .setTimestamp()
