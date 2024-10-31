@@ -35,34 +35,35 @@ module.exports = {
     const mencionado = interaction.options.getUser("usuario");
 
     if (mencionado) {
-      const mencionadoId = mencionado.id;
+      const mencionadoId = mencionado.id; // Get the ID of the mentioned user
       const mencionadoNombre = funcStrings.capitalizeFirstLetter(
         mencionado.username
       );
+
       const embed = new EmbedBuilder()
         .addFields({
-          name: `${usuario} ha insultado a <@${mencionadoId}> 🤬`,
-          value: `${mencionadoNombre}, **${respuesta}**.`,
+          name: `${usuario} ha insultado a ${mencionadoNombre} 🤬`,
+          value: `<@${mencionadoId}>, **${respuesta}**.`,
         })
         .setColor(colors.primary)
         .setTimestamp()
         .setFooter({ text: "/insultar" });
-      await interaction.reply({
-        embeds: [embed],
-      });
+
+      // Reply with the embed
+      await interaction.reply({ embeds: [embed] });
       return;
     } else {
+      // Handle the case where no user was mentioned
       const embed = new EmbedBuilder()
         .addFields({
-          name: `${usuario} me ha pedido un insulto 🤬 `,
+          name: `${usuario} me ha pedido un insulto 🤬`,
           value: `${usuario}, **${respuesta}**.`,
         })
         .setColor(colors.primary)
         .setTimestamp()
         .setFooter({ text: "/insultar" });
-      await interaction.reply({
-        embeds: [embed],
-      });
+
+      await interaction.reply({ embeds: [embed] });
     }
   },
 };

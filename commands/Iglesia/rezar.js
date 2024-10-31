@@ -43,7 +43,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setColor(colors.primary) // Use color from JSON
-        .setTitle(`🍝 ¡Ramén!`)
+        .setTitle(`🍝 ¡R'amén!`)
         .addFields(
           { name: `Gracias por rezar, ${usuario}.`, value: bendicion }
         )
@@ -62,7 +62,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setColor(colors.primary) // Use color from JSON
-        .setTitle(`🍝 ¡Ramén!`)
+        .setTitle(`🍝 ¡R'amén!`)
         .addFields(
 
           { name: `**${bendecido}** ha sido bendecide gracias a **${usuario}**`, value: bendicion }
