@@ -5,8 +5,3 @@
 ## 🖼️ Descripción
 
 MonEsVol es un bot de Discord creado con DiscordJS diseñado para emular las características únicas del Monstruo de Espagueti Volador. ¡Es perfecto para añadir personalidad e interacciones dinámicas a tu servidor!
-
-## 📋 Funcionalidades
-
-1. 🙏 **Rezar:** MonEsVol puede bendecir a un usuario específico, agregando un toque espiritual o humorístico al servidor. Usa `/rezar` para invocar una bendición, ya sea para ti mismo o para un amigo.
-2. 📶 **Ping (Verificación de Latencia):** Usa `/ping` para verificar qué tan rápido MonEsVol puede responder a tus comandos.
