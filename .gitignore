@@ -128,3 +128,11 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Lucas Acertijo
+assets/pdf/obsequio.pdf
+assets/
+commands/Iglesia/acertijo.js
+
+# Logfile
+logfile.txt
