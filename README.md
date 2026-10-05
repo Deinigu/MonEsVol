@@ -11,7 +11,3 @@
 ## 🖼️ Descripción
 
 MonEsVol es un bot de Discord creado con DiscordJS diseñado para emular las características únicas del Monstruo de Espagueti Volador. ¡Es perfecto para añadir personalidad e interacciones dinámicas a tu servidor!
-
-## Dependencias
-
-Se fija la dependencia transitiva `undici` a `6.28.1` mediante `overrides` para corregir CVE-2026-19534 (GHSA-rfgv-xxqx-mfg5). Usa `npm ci` para instalar las versiones del archivo de bloqueo.
